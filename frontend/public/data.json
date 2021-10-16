@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Power FM",
+        "frequency": "100,0",
+        "key": "1",
+        "imgPath": "./images/powerfm.png"
+    },
+    {
+        "name": "Metro FM",
+        "frequency": "101,2",
+        "key": "2",
+        "imgPath": "./images/metrofm.jpg"
+    },
+    {
+        "name": "Fenomen FM",
+        "frequency": "99,4",
+        "key": "3",
+        "imgPath": "./images/fenomenfm.jpg"
+    },
+    {
+        "name": "Joy FM",
+        "frequency": "87,1",
+        "key": "4",
+        "imgPath": "./images/joyfm.png"
+    },
+    {
+        "name": "Radio Wales",
+        "frequency": "142,2",
+        "key": "5",
+        "imgPath": "./images/radiowales.png"
+    }
+]

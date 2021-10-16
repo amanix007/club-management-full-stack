@@ -1,0 +1,10 @@
+.# file: ~/.gitignore_global
+.vscode/*
+node_modules/
+logs/*
+.idea
+*.lock
+*.log
+dist
+storage/*
+coverage/*

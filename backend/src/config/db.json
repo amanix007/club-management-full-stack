@@ -1,0 +1,76 @@
+{
+  "development": {
+    "username": "root",
+    "password": "root",
+    "database": "",
+    "host": "0.0.0.0",
+    "pool": {
+      "max": 20,
+      "min": 5,
+      "idle": 10000
+    },
+    "define":{
+      "timestamps": false
+    },
+    "charset": "utf8",
+    "collate": "utf8_general_ci",
+    "logging": false,
+    "dialect": "mysql",
+    "storage": ":memory:"
+  },
+  "test": {
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "",
+    "pool": {
+      "max": 20,
+      "min": 5,
+      "idle": 10000
+    },
+    "define":{
+      "timestamps": false
+    },
+    "charset": "utf8",
+    "collate": "utf8_general_ci",
+    "logging": false,
+    "dialect": "mysql",
+    "storage": ":memory:"
+  },
+  "stage": {
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "t",
+    "dialect": "mysql",
+    "pool": {
+      "max": 20,
+      "min": 5,
+      "idle": 10000
+    },
+    "define":{
+      "timestamps": false
+    },
+    "charset": "utf8",
+    "collate": "utf8_general_ci",
+    "logging": false
+  },
+  "production": {
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "",
+    "dialect": "mysql",
+    "pool": {
+      "max": 20,
+      "min": 5,
+      "idle": 10000
+    },
+    "define":{
+      "timestamps": false
+    },
+    "charset": "utf8",
+    "collate": "utf8_general_ci",
+    "logging": false
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "development": {
+    "dialect": "mysql",
+    "storage": "./db.development.sqlite"
+  },
+  "test": {
+    "dialect": "mysql",
+    "storage": ":memory:"
+  },
+  "production": {
+    "username": "tbbd",
+    "password": "",
+    "database": "",
+    "host": "",
+    "dialect": "mysql",
+    "pool": {
+      "max": 20,
+      "min": 5,
+      "idle": 10000
+    },
+    "define":{
+      "timestamps": false
+    },
+    "charset": "utf8",
+    "collate": "utf8_general_ci",
+    "logging": false
+  }
+}
