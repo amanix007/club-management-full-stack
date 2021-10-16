@@ -77,10 +77,6 @@
     "ts-node": "^8.3.0",
     "tsconfig-paths": "^3.8.0",
     "typescript": "^3.5.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://tbbd-asm@bitbucket.org/tbbd-tech/node_api_v2.git"
-  },
-  "homepage": "https://bitbucket.org/tbbd-tech/node_api_v2#readme"
+  }
+  
 }
