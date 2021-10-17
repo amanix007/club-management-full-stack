@@ -46,7 +46,7 @@ function UpdateMember(props: Props): ReactElement {
 
 
         for (const property in updateMember) {
-            if (property !== "avatarPath") {
+            if (property !== "fileName") {
                 bodyFormData.append(property, updateMember[property as keyof Member])
             }
         }

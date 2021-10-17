@@ -8,7 +8,7 @@ export interface MemberInterface {
     name: string;
     age: number;
     email: string;
-    avatarPath: string;
+    fileName: string;
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -18,7 +18,7 @@ class Member extends Model implements MemberInterface {
     public name!: string;
     public age!: number;
     public email!: string;
-    public avatarPath!: string;
+    public fileName!: string;
     public readonly createdAt?: Date;
     public readonly updatedAt?: Date;
 }
@@ -37,10 +37,10 @@ Member.init({
         allowNull: false,
     },
     age: {
-        type: new DataTypes.NUMBER,
+        type: new DataTypes.INTEGER,
         validate: {
-            isEmail: {
-                msg: "Age must be number"
+            isInt: {
+                msg: "age must be number"
             }
         },
         allowNull: false,
@@ -55,8 +55,9 @@ Member.init({
         },
         allowNull: false,
     },
-    avatarPath: {
+    fileName: {
         type: new DataTypes.STRING,
+        unique: true,
         validate: {
             notEmpty: true
         },

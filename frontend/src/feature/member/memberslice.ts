@@ -22,7 +22,7 @@ const memberlistSlice = createSlice({
             name: "Aman Ullah",
             age: 30,
             email: "amanullah8225@gmail.com",
-            avatarPath: "",
+            fileName: "",
             avatar: null,
         } as Member,
 
@@ -31,7 +31,7 @@ const memberlistSlice = createSlice({
             name: "Aman Ullah",
             age: 30,
             email: "amanullah8225@gmail.com",
-            avatarPath: "",
+            fileName: "",
             avatar: null,
         } as Member,
         updateMember: {
@@ -39,7 +39,7 @@ const memberlistSlice = createSlice({
             name: "Aman Ullah",
             age: 30,
             email: "amanullah8225@gmail.com",
-            avatarPath: "",
+            fileName: "",
             avatar: null,
         } as Member,
     },

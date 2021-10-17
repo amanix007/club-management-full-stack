@@ -8,7 +8,7 @@ type Member = {
     name: string,
     age: number,
     email: string,
-    avatarPath: string
+    fileName: string
 }
 const updateMember = async (req: Request, res: Response) => {
 

@@ -23,6 +23,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { APP_baseAPI_Root_URL } from '../../_menifest';
 
 
 interface Props extends RouteComponentProps {
@@ -71,7 +72,7 @@ function Dashboard(props: Props): ReactElement {
 
 
         for (const property in createNewData) {
-            if (property !== "avatarPath" && property !== "avatar") {
+            if (property !== "fileName" && property !== "avatar") {
                 bodyFormData.append(property, createNewData[property as keyof Member])
             }
         }
@@ -172,7 +173,7 @@ function Dashboard(props: Props): ReactElement {
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell align="right">
-                                        <Avatar src={row.avatarPath} />
+                                        <Avatar src={`${APP_baseAPI_Root_URL}/public/images/${row.fileName}`} />
                                     </TableCell>
                                     <TableCell component="th" scope="row">
                                         {row.name}

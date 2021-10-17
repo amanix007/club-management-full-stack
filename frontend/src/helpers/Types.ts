@@ -3,7 +3,7 @@ export type Member = {
     name: string,
     age: number,
     email: string,
-    avatarPath: string,
+    fileName: string,
     avatar: null | File | any,
 };
 

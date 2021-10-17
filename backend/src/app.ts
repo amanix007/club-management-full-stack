@@ -1,5 +1,4 @@
 import express from "express";
-import formidableMiddleware from "express-formidable";
 import bodyParser from "body-parser";
 
 import v1 from "./routes/v1/index";

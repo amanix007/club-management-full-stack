@@ -1,5 +1,5 @@
 import sequelize from "./config/sequelize";
-import Member from "./models/member";
+import Member from "./models/member_model";
 
 const migrationStatus = process.argv[2];
 

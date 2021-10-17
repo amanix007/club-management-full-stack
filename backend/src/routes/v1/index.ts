@@ -1,6 +1,6 @@
 import { Router } from "express";
 import commonRouter from "./common";
-import MemberRouter from "./member/member";
+import MemberRouter from "./member/member_router";
 
 const v1 = Router();
 
