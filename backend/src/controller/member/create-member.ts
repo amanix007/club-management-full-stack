@@ -12,9 +12,11 @@ type Member = {
 }
 const createMember = async (req: Request, res: Response) => {
 
+    console.log('req:', req)
 
-    const files: any = req.files;
-    console.log('files:', files.avatar)
+    const file: any = req.file;
+    console.log('file:', file)
+    // console.log('files:', files.avatar)
 
     // var oldpath = files.filetoupload.path;
     // // var newpath = 'C:/Users/Your Name/' + files.filetoupload.name;
@@ -46,25 +48,36 @@ const createMember = async (req: Request, res: Response) => {
 };
 
 export default createMember;
-let p = path.join(__dirname, './../../../uploads');
+// let p = path.join(__dirname, './../../../uploads');
+let p = path.join(__dirname, './../../../public/images');
 console.log("___________");
 console.log(p);
 console.log("___________");
 
 
 // handle storage using multer
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, p);
+//     },
+//     filename: function (req, file, cb) {
+//         // cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
+
+//         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+//         cb(null, file.fieldname + '-' + uniqueSuffix)
+//     }
+// });
+
+
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
+    destination: function(req, file, cb) {
+        // cb(null, './public/image');
         cb(null, p);
     },
-    filename: function (req, file, cb) {
-        // cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
-
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, file.fieldname + '-' + uniqueSuffix)
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname));
     }
 });
-
 
 
 // const storage = multer.diskStorage({

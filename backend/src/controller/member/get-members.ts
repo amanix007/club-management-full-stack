@@ -24,7 +24,7 @@ const getMembers = async (req: Request, res: Response) => {
         })
     }
 
-    console.log('members:', members)
+    
 
     try {
         res.send(members);

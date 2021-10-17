@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { fetchMemeberList, memberInputHandler, selectMemeber, deleteMemeber,selectedMemeberForUpdate } from '../../feature/member/memberslice';
+import { fetchMemeberList, memberInputHandler, selectMemeber, deleteMemeber, selectedMemeberForUpdate } from '../../feature/member/memberslice';
 import { LoadingComponent } from '../../helpers/CommonComponents';
 import { CREATE_MEMEBR } from '../../api/api';
 import { Member } from '../../helpers/Types';
@@ -71,7 +71,7 @@ function Dashboard(props: Props): ReactElement {
 
 
         for (const property in createNewData) {
-            if (property !== "avatarPath") {
+            if (property !== "avatarPath" && property !== "avatar") {
                 bodyFormData.append(property, createNewData[property as keyof Member])
             }
         }
@@ -79,7 +79,7 @@ function Dashboard(props: Props): ReactElement {
             bodyFormData.append("avatar", imageFile);
         }
 
-        console.log('bodyFormData:', bodyFormData)
+        
         let res = await CREATE_MEMEBR(bodyFormData);
 
         if (res) {
@@ -93,6 +93,8 @@ function Dashboard(props: Props): ReactElement {
         const target = e.target as HTMLInputElement;
         if (target !== null) {
             const file: any = target.files;
+            
+            console.log('file[0]:', file[0])
             setImageFile(file[0]);
         }
 
@@ -103,6 +105,52 @@ function Dashboard(props: Props): ReactElement {
             width: 800,
             margin: "40px auto"
         }}>
+            <form action="/"
+                onSubmit={submit}
+                style={{ marginTop: 50, marginBottom: 50 }}
+            >
+                <TextField label="Name" fullWidth
+                    margin="normal"
+                    value={createNewData.name}
+                    onChange={handleTextInput}
+                    name="name"
+                    required
+
+                />
+                <TextField label="Age" fullWidth
+                    margin="normal"
+                    value={createNewData.age}
+                    onChange={handleTextInput}
+                    name="age"
+                    required
+                />
+                <TextField label="Email" fullWidth
+                    margin="normal"
+                    value={createNewData.email}
+                    onChange={handleTextInput}
+                    name="email"
+                    required
+                />
+
+                <Button
+                    variant="contained"
+                    component="label"
+                >
+                    Upload Image
+                    <input
+                        onChange={handleFileUpload}
+                        type="file"
+                        hidden
+                        name="avatar"
+                    />
+                </Button>
+
+                <div>
+                    <Button type="submit" variant="contained" className="mb-xs-8" fullWidth style={{ marginTop: 50, marginBottom: 50 }}>Save Member</Button>
+                </div>
+
+            </form>
+
 
             <h1>Club members</h1>
             {loading === "loading" ? <LoadingComponent /> :
@@ -177,51 +225,7 @@ function Dashboard(props: Props): ReactElement {
 
             {/* <Button variant="contained" className="mb-xs-8">Add Member</Button> */}
 
-            <form action="/"
-                onSubmit={submit}
-                style={{ marginTop: 50, marginBottom: 50 }}
-            >
-                <TextField label="Name" fullWidth
-                    margin="normal"
-                    value={createNewData.name}
-                    onChange={handleTextInput}
-                    name="name"
-                    required
 
-                />
-                <TextField label="Age" fullWidth
-                    margin="normal"
-                    value={createNewData.age}
-                    onChange={handleTextInput}
-                    name="age"
-                    required
-                />
-                <TextField label="Email" fullWidth
-                    margin="normal"
-                    value={createNewData.email}
-                    onChange={handleTextInput}
-                    name="email"
-                    required
-                />
-
-                <Button
-                    variant="contained"
-                    component="label"
-                >
-                    Upload Image
-                    <input
-                        onChange={handleFileUpload}
-                        type="file"
-                        hidden
-                        name="avatar"
-                    />
-                </Button>
-
-                <div>
-                    <Button type="submit" variant="contained" className="mb-xs-8" fullWidth style={{ marginTop: 50, marginBottom: 50 }}>Save Member</Button>
-                </div>
-
-            </form>
 
         </div>
     )

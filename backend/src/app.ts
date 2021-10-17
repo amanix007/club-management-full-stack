@@ -10,7 +10,7 @@ const app = express();
 
 
 // middleware
-app.use(formidableMiddleware());
+
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 
