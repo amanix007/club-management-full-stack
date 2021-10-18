@@ -1,7 +1,8 @@
 import axios from "axios";
 import { Member } from "../helpers/Types";
+import { APP_baseAPI_URL } from "../_menifest";
 
-axios.defaults.baseURL = "http://localhost:1338/api";
+axios.defaults.baseURL =  APP_baseAPI_URL;
 
 
 export async function GET_MEMEBER_LIST() {
