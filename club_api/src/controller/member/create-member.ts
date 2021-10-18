@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-import multer from "multer";
-import path from "path";
+
 import { MemberInterface } from "../../../src/models/member_model";
 import member_service from "../../../src/service/member_service";
 
@@ -71,50 +70,4 @@ const createMember = async (req: Request, res: Response) => {
 };
 
 export default createMember;
-// let p = path.join(__dirname, './../../../uploads');
-let p = path.join(__dirname, './../../../public/images');
-console.log("___________");
-console.log(p);
-console.log("___________");
-
-
-// handle storage using multer
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, p);
-//     },
-//     filename: function (req, file, cb) {
-//         // cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
-
-//         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-//         cb(null, file.fieldname + '-' + uniqueSuffix)
-//     }
-// });
-
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        // cb(null, './public/image');
-        cb(null, p);
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname));
-    }
-});
-
-
-// const storage = multer.diskStorage({
-//     destination: './uploads',
-//     filename: function (req, file, cb) {
-//         return cb(null, file.originalname)
-//     }
-// });
-// const storage = multer.diskStorage({
-//     destination: './uploads',
-//     filename: function (req, file, cb) {
-//         return cb(null, file.originalname)
-//     }
-// });
-
-export const upload = multer({ storage: storage });
 

@@ -7,27 +7,42 @@ import Button from '@mui/material/Button';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { fetchMemeberList, memberListUpdate, dataUpdate, memberUpdateInputHandler } from '../../feature/member/memberslice';
+import { fetchMemeberList, memberListUpdate, dataUpdate, memberUpdateInputHandler, selectedMemeberForUpdate } from '../../feature/member/memberslice';
 import { LoadingComponent } from '../../helpers/CommonComponents';
-import { UPDATE_MEMEBR } from '../../api/api';
+import { GET_MEMEBER_DETAILS, UPDATE_MEMEBR } from '../../api/api';
 import { Member } from '../../helpers/Types';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import IconButton from '@mui/material/IconButton';
 import { RouterProps, withRouter } from 'react-router';
+import { Alert, Stack } from '@mui/material';
 
 interface Props extends RouterProps {
+    [x: string]: any;
 
 }
 
 function UpdateMember(props: Props): ReactElement {
 
+
+
     const dispatch = useDispatch();
     const [imageFile, setImageFile] = React.useState<null | File | Blob>(null);
+    const [status, setstatus] = React.useState<String>("");
 
 
     const { loading, memberList, updateMember } = useSelector((state: RootState) => state.member);
     React.useEffect(() => {
-        dispatch(fetchMemeberList());
+        const getMemberDetails = async () => {
+            let { id } = props.match.params;
+            let res = await GET_MEMEBER_DETAILS(parseInt(id));
+            console.log('res:', res)
+            if (res) {
+                dispatch(selectedMemeberForUpdate(res as Member));
+
+            }
+        };
+
+        getMemberDetails();
     }, []);
 
     const handleTextInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -58,15 +73,11 @@ function UpdateMember(props: Props): ReactElement {
         let res = await UPDATE_MEMEBR(bodyFormData);
 
         if (res) {
-            for (let i = 0; i < memberList.length; i++) {
-                if (memberList[i].id === updateMember.id) {
-                    memberList[i] = updateMember
-                }
-            }
+            setstatus("success")
 
-            dispatch(memberListUpdate(memberList))
+        } else {
+            setstatus("error")
 
-            props.history.push("/")
         }
 
     }
@@ -144,7 +155,14 @@ function UpdateMember(props: Props): ReactElement {
                 </div>
 
             </form>
+            <Stack>
+
+                {status === "success" && <Alert severity="success">Success</Alert>}
+                {status === "error" && <Alert severity="error">Error</Alert>}
+            </Stack>
         </div>
-    )
+    );
+
+
 }
 export default withRouter(UpdateMember)

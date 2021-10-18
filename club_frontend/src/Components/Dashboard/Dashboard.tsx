@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { fetchMemeberList, memberInputHandler, selectMemeber, deleteMemeber, selectedMemeberForUpdate } from '../../feature/member/memberslice';
 import { LoadingComponent } from '../../helpers/CommonComponents';
-import { CREATE_MEMEBR } from '../../api/api';
+import { CREATE_MEMEBR, DELETE_MEMEBER } from '../../api/api';
 import { Member } from '../../helpers/Types';
 import { RouteComponentProps, withRouter } from 'react-router';
 import Dialog from '@mui/material/Dialog';
@@ -42,9 +42,12 @@ function Dashboard(props: Props): ReactElement {
         setOpen(true);
     };
 
-    const handleClose = (status: string) => {
+    const handleClose = async (status: string) => {
         if (status === "ok") {
-            dispatch(deleteMemeber(selectedMember))
+            let res = await DELETE_MEMEBER(parseInt(selectedMember.id));
+            if (res) {
+                dispatch(deleteMemeber(selectedMember))
+            }
         }
         setOpen(false);
     };
@@ -80,7 +83,7 @@ function Dashboard(props: Props): ReactElement {
             bodyFormData.append("avatar", imageFile);
         }
 
-        
+
         let res = await CREATE_MEMEBR(bodyFormData);
 
         if (res) {
@@ -94,13 +97,16 @@ function Dashboard(props: Props): ReactElement {
         const target = e.target as HTMLInputElement;
         if (target !== null) {
             const file: any = target.files;
-            
+
             console.log('file[0]:', file[0])
             setImageFile(file[0]);
         }
 
 
     }
+
+
+
     return (
         <div style={{
             width: 800,
@@ -172,6 +178,7 @@ function Dashboard(props: Props): ReactElement {
                                     key={row.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
+                                    {console.log('`${APP_baseAPI_Root_URL}/public/images/${row.fileName}`:', `${APP_baseAPI_Root_URL}/public/images/${row.fileName}`)}
                                     <TableCell align="right">
                                         <Avatar src={`${APP_baseAPI_Root_URL}/public/images/${row.fileName}`} />
                                     </TableCell>

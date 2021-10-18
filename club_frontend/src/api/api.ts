@@ -2,7 +2,7 @@ import axios from "axios";
 import { Member } from "../helpers/Types";
 import { APP_baseAPI_URL } from "../_menifest";
 
-axios.defaults.baseURL =  APP_baseAPI_URL;
+axios.defaults.baseURL = APP_baseAPI_URL;
 
 
 export async function GET_MEMEBER_LIST() {
@@ -11,6 +11,20 @@ export async function GET_MEMEBER_LIST() {
     // console.log(result);
     if (!result.data.error) {
       return result.data;
+    }
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+export async function GET_MEMEBER_DETAILS(id: number) {
+  try {
+    let result = await axios.get("/v1/members/get-member-details/" + id);
+    // console.log(result);
+    if (!result.data.error) {
+      return result.data.reesponse;
     }
     console.log(result);
   } catch (error) {
@@ -50,6 +64,22 @@ export async function UPDATE_MEMEBR(OBJ: FormData) {
 
   try {
     let result = await axios.put("/v1/members/update-member", OBJ, config);
+    // console.log(result);
+    if (!result.data.error) {
+      return result.data;
+    }
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+
+
+export async function DELETE_MEMEBER(id: number) {
+  try {
+    let result = await axios.delete("/v1/members/delete-member/" + id);
     // console.log(result);
     if (!result.data.error) {
       return result.data;

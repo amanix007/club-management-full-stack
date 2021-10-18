@@ -11,7 +11,7 @@ export const fetchMemeberList = createAsyncThunk('fetchMemeberList', async () =>
     let res = await GET_MEMEBER_LIST();
     return res;
 
-})
+});
 const memberlistSlice = createSlice({
     name: 'member',
     initialState: {

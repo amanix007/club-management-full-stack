@@ -1,8 +1,18 @@
+import dotenv from 'dotenv';
+const result = dotenv.config()
+
+if (result.error) {
+  throw result.error
+}
+console.log(result.parsed);
+
+
 import express from "express";
 import bodyParser from "body-parser";
 
 import v1 from "./routes/v1/index";
 import cors from "cors";
+
 
 // bootstrap
 const app = express();

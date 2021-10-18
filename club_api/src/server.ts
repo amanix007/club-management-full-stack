@@ -15,14 +15,14 @@ if (!fs.existsSync(dir)) {
 }
 
 // serving static files
-app.use('/uploads', express.static('uploads'));
+app.use('/public', express.static('public'));
 
 
 // make sure the app can talk to the database server
 // :->TODO product environment tweak later
 
 const connectAndSyncDB = (numberOfRetry: number) => new Promise((resolve, reject) => {
-    let attempts = 2;
+    let attempts = 5;
     const retry = (n: number): any => {
         return sequelize
             .authenticate()
@@ -30,7 +30,7 @@ const connectAndSyncDB = (numberOfRetry: number) => new Promise((resolve, reject
                 console.log("Database Connection has been established successfully.");
                 // development purpose
                 sequelize.query("SET FOREIGN_KEY_CHECKS = 0", { raw: true }).then(function () {
-                    sequelize.sync({ force: true, logging: console.log }).then(() => {
+                    sequelize.sync({  logging: console.log }).then(() => {
                         console.log("Database sync with model for development env.");
                         resolve(null);
                     });

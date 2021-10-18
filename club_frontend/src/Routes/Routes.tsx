@@ -26,7 +26,7 @@ export default class Routes extends React.Component<IRoutesProps, IRoutesState> 
                         <Switch>
                             {/* <Route exact path="/" component={HomePage} /> */}
                             <Route exact path="/" component={Dashboard} />
-                            <Route exact path="/update/:slug" component={UpdateMember} />
+                            <Route exact path="/update/:id" component={UpdateMember} />
                             {/* <Route component={Error404Page} /> */}
                         </Switch>
                     </Suspense>

@@ -11,11 +11,7 @@ type Member = {
     email: string,
     fileName: string
 }
-const getMembers = async (req: Request, res: Response) => {
-
-
-    let members: Array<MemberInterface> = [];
-
+const deleteMember = async (req: Request, res: Response) => {
 
 
 
@@ -33,8 +29,24 @@ const getMembers = async (req: Request, res: Response) => {
 
 
     try {
-        members = await member_service.getMemberList();
-        res.send(members);
+        let { id } = req.params;
+        let isdeleted = await member_service.deleteMember(parseInt(id));
+
+        if (isdeleted) {
+            res.status(200).send({
+                status: "success",
+                response: {},
+                message: "Successs"
+            });
+
+        } else {
+            res.status(400).send({
+                status: "failed",
+                response: {},
+                message: "Wrong Request"
+            });
+
+        }
 
     } catch (error) {
         console.log('error:', error)
@@ -43,4 +55,4 @@ const getMembers = async (req: Request, res: Response) => {
     }
 };
 
-export default getMembers;
+export default deleteMember;
