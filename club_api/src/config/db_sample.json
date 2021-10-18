@@ -8,7 +8,7 @@
     "storage": ":memory:"
   },
   "production": {
-    "username": "tbbd",
+    "username": "root",
     "password": "",
     "database": "",
     "host": "",
