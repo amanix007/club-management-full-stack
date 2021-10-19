@@ -1,8 +1,9 @@
 import axios from "axios";
 import { Member } from "../helpers/Types";
-import { APP_baseAPI_URL } from "../_menifest";
+import { REACT_APP_API_BASE_URL } from "../_menifest";
 
-axios.defaults.baseURL = APP_baseAPI_URL;
+axios.defaults.baseURL = REACT_APP_API_BASE_URL;
+console.log('REACT_APP_API_BASE_URL:', REACT_APP_API_BASE_URL)
 
 
 export async function GET_MEMEBER_LIST() {

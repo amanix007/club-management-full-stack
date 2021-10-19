@@ -23,7 +23,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { APP_baseAPI_Root_URL } from '../../_menifest';
+import { REACT_APP_API_BASE_URL } from '../../_menifest';
 
 
 interface Props extends RouteComponentProps {
@@ -178,9 +178,9 @@ function Dashboard(props: Props): ReactElement {
                                     key={row.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    {console.log('`${APP_baseAPI_Root_URL}/public/images/${row.fileName}`:', `${APP_baseAPI_Root_URL}/public/images/${row.fileName}`)}
+                                    {console.log('`${REACT_APP_API_BASE_URL}/public/images/${row.fileName}`:', `${REACT_APP_API_BASE_URL}/public/images/${row.fileName}`)}
                                     <TableCell align="right">
-                                        <Avatar src={`${APP_baseAPI_Root_URL}/public/images/${row.fileName}`} />
+                                        <Avatar src={`${REACT_APP_API_BASE_URL}/public/images/${row.fileName}`} />
                                     </TableCell>
                                     <TableCell component="th" scope="row">
                                         {row.name}
