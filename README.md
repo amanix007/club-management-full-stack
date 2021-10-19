@@ -1,4 +1,4 @@
-# Docker Compose React, Nodejs and MySQL example
+# Club Member Management system React, Express, Mysql , Typescript
 
 ## Run the System
 We can easily run the whole with only a single command:
@@ -7,7 +7,7 @@ docker-compose up
 ```
 
 
- [App Available at ](http://127.0.0.1:8888/).
+ [App Available at http://127.0.0.1:8888/](http://127.0.0.1:8888/).
 
 The services can be run on the background with command:
 ```bash
