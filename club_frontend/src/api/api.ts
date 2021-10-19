@@ -44,13 +44,15 @@ export async function CREATE_MEMEBR(OBJ: FormData) {
 
   try {
     let result = await axios.post("/v1/members/create-member", OBJ, config);
-    // console.log(result);
+    console.log(result);
     if (!result.data.error) {
       return result.data;
     }
     console.log(result);
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    console.log('error:', error)
+    console.log(error.response.data);
+    return error.response.data;
   }
 }
 export async function UPDATE_MEMEBR(OBJ: FormData) {
@@ -65,13 +67,14 @@ export async function UPDATE_MEMEBR(OBJ: FormData) {
 
   try {
     let result = await axios.put("/v1/members/update-member", OBJ, config);
+    console.log('result:', result)
+    return result.data;
+    // if (!result.data.error) {
+    // }
     // console.log(result);
-    if (!result.data.error) {
-      return result.data;
-    }
-    console.log(result);
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    console.log(error.response);
+    return error.response.data;
   }
 }
 

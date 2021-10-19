@@ -23,13 +23,15 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { REACT_APP_API_BASE_URL } from '../../_menifest';
+import { REACT_APP_API_ROOT_URL } from '../../_menifest';
+import CreateMember from '../CreateMember/CreateMember';
 
 
 interface Props extends RouteComponentProps {
 
 };
 function Dashboard(props: Props): ReactElement {
+    const [status, setstatus] = React.useState<String>("");
     const dispatch = useDispatch();
     const { loading, memberList, createNewData, selectedMember, updateMember } = useSelector((state: RootState) => state.member);
     const [open, setOpen] = React.useState(false);
@@ -53,57 +55,13 @@ function Dashboard(props: Props): ReactElement {
     };
 
 
-    const [imageFile, setImageFile] = React.useState<null | File | Blob>(null);
+
 
 
     React.useEffect(() => {
         dispatch(fetchMemeberList());
     }, []);
-    const handleTextInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
 
-        dispatch(
-            memberInputHandler({
-                value: e.target.value,
-                name: e.target.name
-            })
-        );
-    }
-
-    const submit = async (e: React.SyntheticEvent) => {
-        e.preventDefault();
-        var bodyFormData: FormData = new FormData();
-
-
-        for (const property in createNewData) {
-            if (property !== "fileName" && property !== "avatar") {
-                bodyFormData.append(property, createNewData[property as keyof Member])
-            }
-        }
-        if (imageFile) {
-            bodyFormData.append("avatar", imageFile);
-        }
-
-
-        let res = await CREATE_MEMEBR(bodyFormData);
-
-        if (res) {
-            window.scrollTo(0, 0);
-            dispatch(fetchMemeberList());
-        }
-
-    }
-    const handleFileUpload = (e: React.SyntheticEvent): void => {
-
-        const target = e.target as HTMLInputElement;
-        if (target !== null) {
-            const file: any = target.files;
-
-            console.log('file[0]:', file[0])
-            setImageFile(file[0]);
-        }
-
-
-    }
 
 
 
@@ -112,53 +70,8 @@ function Dashboard(props: Props): ReactElement {
             width: 800,
             margin: "40px auto"
         }}>
-            <form action="/"
-                onSubmit={submit}
-                style={{ marginTop: 50, marginBottom: 50 }}
-            >
-                <TextField label="Name" fullWidth
-                    margin="normal"
-                    value={createNewData.name}
-                    onChange={handleTextInput}
-                    name="name"
-                    required
 
-                />
-                <TextField label="Age" fullWidth
-                    margin="normal"
-                    value={createNewData.age}
-                    onChange={handleTextInput}
-                    name="age"
-                    required
-                />
-                <TextField label="Email" fullWidth
-                    margin="normal"
-                    value={createNewData.email}
-                    onChange={handleTextInput}
-                    name="email"
-                    required
-                />
-
-                <Button
-                    variant="contained"
-                    component="label"
-                >
-                    Upload Image
-                    <input
-                        onChange={handleFileUpload}
-                        type="file"
-                        hidden
-                        name="avatar"
-                    />
-                </Button>
-
-                <div>
-                    <Button type="submit" variant="contained" className="mb-xs-8" fullWidth style={{ marginTop: 50, marginBottom: 50 }}>Save Member</Button>
-                </div>
-
-            </form>
-
-
+            <CreateMember />
             <h1>Club members</h1>
             {loading === "loading" ? <LoadingComponent /> :
                 <TableContainer component={Paper} style={{ marginTop: 50, marginBottom: 50 }}>
@@ -178,9 +91,9 @@ function Dashboard(props: Props): ReactElement {
                                     key={row.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    {console.log('`${REACT_APP_API_BASE_URL}/public/images/${row.fileName}`:', `${REACT_APP_API_BASE_URL}/public/images/${row.fileName}`)}
+                                    {console.log('`${REACT_APP_API_ROOT_URL}/public/images/${row.fileName}`:', `${REACT_APP_API_ROOT_URL}/public/images/${row.fileName}`)}
                                     <TableCell align="right">
-                                        <Avatar src={`${REACT_APP_API_BASE_URL}/public/images/${row.fileName}`} />
+                                        <Avatar src={`${REACT_APP_API_ROOT_URL}/public/images/${row.fileName}`} />
                                     </TableCell>
                                     <TableCell component="th" scope="row">
                                         {row.name}
